@@ -19,10 +19,7 @@ const Tasks = async () => {
 
   const session = await auth();
   const user = session?.user;
-  console.log(user);
   if (!user) return redirect("/login");
-
-  // const userInfo = {};
 
   const userData = {
     name: user?.name || "",

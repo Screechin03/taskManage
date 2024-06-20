@@ -2,12 +2,23 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import DefaultLayout from "../layout/DefaultLayout";
 import Link from "next/link";
 import { addTask } from "@/server/actions/taskActions";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
 const CreateTask = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
 
+  const session = await auth();
+  const user = session?.user;
+
+  const userData = {
+    name: user?.name || "",
+    email: user?.email || "",
+    image: user?.image || "",
+  };
+
   return (
-    <DefaultLayout>
+    <DefaultLayout user={userData}>
       <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex  justify-center items-center ">
         <div className="lg:w-[30%] w-[90%]">
           <form

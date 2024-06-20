@@ -6,6 +6,7 @@ import {
 } from "@/server/actions/taskActions";
 import Link from "next/link";
 import DefaultLayout from "../layout/DefaultLayout";
+import { auth } from "@/auth";
 
 const UpdateTask = async ({ params }: { params: any }) => {
   const { id } = params;
@@ -16,9 +17,18 @@ const UpdateTask = async ({ params }: { params: any }) => {
 
   const currentDate = new Date().toISOString().split("T")[0];
 
+  const session = await auth();
+  const user = session?.user;
+
+  const userData = {
+    name: user?.name || "",
+    email: user?.email || "",
+    image: user?.image || "",
+  };
+
   return (
     <>
-      <DefaultLayout>
+      <DefaultLayout user={userData}>
         <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
           <div className="lg:w-[30%] w-[90%]">
             <form

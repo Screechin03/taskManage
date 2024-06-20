@@ -32,7 +32,7 @@ const taskSchema = new mongoose.Schema({
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Auth",
+    ref: "User",
     // required: true,
   },
   createdAt: {
