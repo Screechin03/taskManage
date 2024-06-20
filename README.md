@@ -1,12 +1,12 @@
-## Task Management App
+### Task Management App
 This project is a task management application built using Next.js and MongoDB. It includes authentication using Auth.js with support for Google and GitHub third-party authentication.
 
-##Features
-Authentication:
-
-Supports authentication via Auth.js with Google and GitHub.
+## Features
+# Authentication:
+  Supports authentication via Auth.js with Google and GitHub.
 Users can securely log in using their preferred method.
-Task Management:
+
+# Task Management:
 
 Users can create, update, and delete tasks.
 Each task includes:
