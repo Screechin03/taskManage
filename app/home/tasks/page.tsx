@@ -19,7 +19,7 @@ const Tasks = async () => {
 
   const session = await auth();
   const user = session?.user;
-  if (!user) return redirect("/login");
+  if (!session) return redirect("/login");
 
   const userData = {
     name: user?.name || "",

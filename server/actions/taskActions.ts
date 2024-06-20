@@ -52,7 +52,7 @@ export const getUserTasks = async () => {
 
     const session = await auth();
     if (!session) {
-      throw new Error("Not authenticated");
+      redirect("/login");
     }
 
     const userId = session?.user?.id;
@@ -65,6 +65,7 @@ export const getUserTasks = async () => {
     return tasks;
   } catch (error) {
     console.log(error);
+    redirect("/login");
     throw new Error("Failed to get tasks");
   }
 };
@@ -119,7 +120,6 @@ export const updateUserTask = async (formData: FormData) => {
 
 export const deleteUserTask = async (formData: FormData) => {
   const { id } = Object.fromEntries(formData);
-
   try {
     await connectDB();
 

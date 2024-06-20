@@ -4,9 +4,9 @@ import { FaPlus, FaTasks } from "react-icons/fa";
 import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
-
 import { BiLogOutCircle } from "react-icons/bi";
 import Image from "next/image";
+import { logoutUser } from "@/server/actions/userActions";
 
 interface Props {
   children: ReactNode;
@@ -84,7 +84,7 @@ const DefaultLayout = ({ children, user }: Props) => {
                 </Link>
               </div>
             </div>
-            <form className="h-[10%]">
+            <form action={logoutUser} className="h-[10%]">
               <button
                 type="submit"
                 className="w-full flex flex-row gap-1 text-red-600 py-3 border-0 outline-none duration-300 ease-in-out hover:bg-red-400 hover:bg-opacity-20 lg:pb-5  lg:pl-6"

@@ -5,7 +5,7 @@ import { User } from "../models/userModel";
 import { redirect } from "next/navigation";
 import { hash } from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 
 //Login user
 
@@ -53,4 +53,9 @@ const registerUser = async (formData: FormData) => {
   redirect("/home/tasks");
 };
 
-export { registerUser, loginUser };
+const logoutUser = async () => {
+  await signOut();
+  redirect("/login");
+};
+
+export { registerUser, loginUser, logoutUser };
