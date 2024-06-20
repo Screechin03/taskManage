@@ -43,7 +43,7 @@ const Tasks = async () => {
             ) : (
               <>
                 {tasks &&
-                  tasks.map((task) => {
+                  tasks.map((task: any) => {
                     const dueDate = task.dueDate;
                     const formattedDate = formatDate(dueDate);
                     return (
