@@ -75,31 +75,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
 
-    signIn: async ({ user, account }) => {
-      if (account?.provider === "google") {
-        try {
-          const { email, name, image, id } = user;
+    // signIn: async ({ user, account }) => {
+    //   if (account?.provider === "google") {
+    //     try {
+    //       const { email, name, image, id } = user;
 
-          await connectDB();
+    //       await connectDB();
 
-          const alreadyUser = await User.findOne({ email });
+    //       const alreadyUser = await User.findOne({ email });
 
-          if (!alreadyUser) {
-            await User.create({ email, name, image, authProviderId: id });
-          } else {
-            return true;
-          }
-        } catch (error) {
-          throw new Error("Error in creating user");
-          return false;
-        }
-      }
+    //       if (!alreadyUser) {
+    //         await User.create({ email, name, image, authProviderId: id });
+    //       } else {
+    //         return true;
+    //       }
+    //     } catch (error) {
+    //       throw new Error("Error in creating user");
+    //       return false;
+    //     }
+    //   }
 
-      if (account?.provider === "credentials") {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    //   if (account?.provider === "credentials") {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // },
   },
 });
