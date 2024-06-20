@@ -24,7 +24,7 @@ const page = async () => {
         <div className="lg:w-[50%] h-full flex items-center justify-center">
           <div className="lg:w-[28rem] min-w-[24rem] h-[30rem] z-20 rounded-3xl gap-4  flex flex-col">
             <form action={loginUser}>
-              <h2 className="text-3xl font-bold tracking-wider text-black">
+              <h2 className="lg:text-3xl text-2xl font-bold tracking-wider text-black">
                 Let&apos;s get in to&nbsp;
                 <span className="text-indigo-500">workplace</span>
                 <span className="text-black text-[3rem]">.</span>
