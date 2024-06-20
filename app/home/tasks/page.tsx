@@ -19,12 +19,20 @@ const Tasks = async () => {
 
   const session = await auth();
   const user = session?.user;
+  console.log(user);
   if (!user) return redirect("/login");
 
+  // const userInfo = {};
+
+  const userData = {
+    name: user?.name || "",
+    email: user?.email || "",
+    image: user?.image || "",
+  };
   return (
     <>
-      <DefaultLayout>
-        <div className="w-full flex items-center justify-center">
+      <DefaultLayout user={userData}>
+        <div className="w-full flex items-center justify-center relative">
           <div className="lg:w-full w-full flex flex-wrap gap-6  mb-6">
             {tasks && tasks.length === 0 ? (
               <div className="flex items-center justify-center my-1 bg-white bg-opacity-30 backdrop-blur-lg w-[90%] lg:w-[15rem] 3xl-[w-29rem] h-[17.5rem] rounded-3xl mx-5 text-black shadow-xl border-2 border-slate-50">

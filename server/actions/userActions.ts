@@ -24,7 +24,7 @@ const loginUser = async (formData: FormData) => {
     const errorMessage = error as CredentialsSignin;
     return errorMessage.cause;
   }
-  redirect("/");
+  redirect("/home/tasks");
 };
 
 //Register User
@@ -50,7 +50,7 @@ const registerUser = async (formData: FormData) => {
 
   console.log(`Welcome ${name}`);
 
-  redirect("/");
+  redirect("/home/tasks");
 };
 
 export { registerUser, loginUser };
