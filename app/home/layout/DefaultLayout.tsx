@@ -53,7 +53,7 @@ const DefaultLayout = ({ children, user }: Props) => {
                       width={100}
                       height={100}
                       className="rounded-full"
-                      src={user?.image || "/images/default_avatar.png"}
+                      src={user?.image || "/images/default_avatar.jpeg"}
                       alt="User"
                     />
                   </span>
