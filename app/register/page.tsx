@@ -15,9 +15,6 @@ const Register = async () => {
   return (
     <>
       <div className="relative w-full h-screen flex justify-end items-center ">
-        <div className=" w-[50%] h-screen">
-          {/* <HeroHighlight>{children}</HeroHighlight> */}
-        </div>
         <div className="lg:w-[50%] w-full h-screen flex items-center justify-center">
           <div className="lg:w-[28rem] min-w-[24rem] h-[30rem] z-20 rounded-3xl flex flex-col ">
             <form action={registerUser}>
