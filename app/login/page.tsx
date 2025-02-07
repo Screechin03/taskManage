@@ -17,7 +17,7 @@ const page = async () => {
   return (
     <div className="relative w-full h-screen flex justify-center items-center">
       <div className="lg:w-[28rem] min-w-[24rem] h-[30rem] rounded-3xl gap-4 flex flex-col items-center justify-center bg-white shadow-lg p-6">
-        <form action={loginUser} className="w-full">
+        <form action={loginUser as unknown as (formData: FormData) => void} className="w-full">
           <h2 className="lg:text-3xl text-2xl font-bold tracking-wider text-black text-center">
             Let&apos;s get in to&nbsp;
             <span className="text-indigo-500">workplace</span>
