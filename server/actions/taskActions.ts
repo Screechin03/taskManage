@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { Task } from "../models/taskModel";
 import connectDB from "@/lib/db";
 import { User } from "../models/userModel";
-import { auth } from "@/auth";
+import { auth } from "@/server";
 
 //Task Actions
 
@@ -60,7 +60,6 @@ export const getUserTasks = async () => {
     if (!user) {
       throw new Error("User not found");
     }
-
     const tasks = await user.tasks;
     return tasks;
   } catch (error) {
@@ -118,16 +117,21 @@ export const updateUserTask = async (formData: FormData) => {
   redirect("/home/tasks");
 };
 
+
+
+
 export const deleteUserTask = async (formData: FormData) => {
   const { id } = Object.fromEntries(formData);
+  console.log(id)
   try {
     await connectDB();
-
     await Task.findByIdAndDelete(id);
-  } catch (error) {
+  }
+  catch (error) {
     console.log(error);
     throw new Error("Failed to delete task");
   }
   revalidatePath("/home/tasks");
   redirect("/home/tasks");
+
 };

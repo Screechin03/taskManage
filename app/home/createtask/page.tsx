@@ -2,8 +2,8 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import DefaultLayout from "../layout/DefaultLayout";
 import Link from "next/link";
 import { addTask } from "@/server/actions/taskActions";
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { redirect, useRouter } from "next/navigation";
+import { auth } from "@/server";
 
 const CreateTask = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
@@ -19,7 +19,7 @@ const CreateTask = async () => {
 
   return (
     <DefaultLayout user={userData}>
-      <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex  justify-center items-center ">
+      <div className="fixed inset-0 bg-neutral-400 bg-opacity-30 backdrop-blur-sm flex  justify-center items-center ">
         <div className="lg:w-[30%] w-[90%]">
           <form
             action={addTask}
@@ -37,7 +37,7 @@ const CreateTask = async () => {
                 <input
                   id="name"
                   name="title"
-                  className="w-full py-2.5 outline-none text-sm bg-transparent bg-white text-black border-2 rounded-sm px-2 mt-2  focus:border-black"
+                  className="w-full py-2.5 outline-none text-sm bg-transparent bg-white text-black border-2 rounded-xl px-2 mt-2  focus:border-black"
                   placeholder="Task"
                 />
               </span>
@@ -48,7 +48,7 @@ const CreateTask = async () => {
                 <textarea
                   id="name"
                   name="description"
-                  className="w-full h-20 outline-none resize-none text-sm bg-transparent bg-white py-1 text-black border-2 rounded-sm px-2 mt-2  focus:border-black"
+                  className="w-full h-20 outline-none resize-none text-sm bg-transparent bg-white py-1 text-black border-2 rounded-xl px-2 mt-2  focus:border-black"
                   placeholder="Task Description"
                 />
               </span>
@@ -57,7 +57,7 @@ const CreateTask = async () => {
                 <select
                   title="status"
                   name="taskStatus"
-                  className=" py-2.5 outline-none text-sm  bg-white  text-black px-2 mt-2  border-2 cursor-pointer rounded-sm focus:border-black"
+                  className=" py-2.5 outline-none text-sm  bg-white  text-black px-2 mt-2  border-2 cursor-pointer rounded-xl focus:border-black"
                 >
                   <option>Not Started</option>
                   <option>In Process</option>
@@ -70,7 +70,7 @@ const CreateTask = async () => {
                   <select
                     title="Priority"
                     name="priorityLevel"
-                    className=" py-2.5 outline-none text-sm  bg-white  text-black px-2 mt-2  border-2 cursor-pointer rounded-sm focus:border-black"
+                    className=" py-2.5 outline-none text-sm  bg-white  text-black px-2 mt-2  border-2 cursor-pointer rounded-xl focus:border-black"
                   >
                     <option className="text-green-600">Normal</option>
                     <option className="text-orange-600">High</option>
@@ -85,18 +85,19 @@ const CreateTask = async () => {
                     title="duedate"
                     min={currentDate}
                     name="dueDate"
-                    className="w-full py-2 outline-none text-sm bg-white uppercase  text-black px-2 mt-2  border-2 rounded-sm focus:border-black"
+                    className="w-full py-2 outline-none text-sm bg-white uppercase  text-black px-2 mt-2  border-2 rounded-xl focus:border-black"
                   />
                 </div>
               </div>
             </div>
-
-            <button
-              className="lg:w-[8rem] mt-10 lg:mt-6 lg:mb-2 h-10 text-md font-bold px-4 rounded-3xl border-2 border-black hover:bg-stone-200"
-              type="submit"
-            >
-              Create
-            </button>
+            <div className="space-x-5">
+              <button
+                className="lg:w-[8rem] mt-10 lg:mt-6 lg:mb-2 h-10 text-md font-bold px-4 rounded-3xl border-2 border-black hover:bg-stone-200"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
           </form>
         </div>
       </div>

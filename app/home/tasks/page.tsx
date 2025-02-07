@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import Link from "next/link";
-import { auth } from "@/auth";
+import { auth } from "@/server";
 import { redirect } from "next/navigation";
 import DefaultLayout from "../layout/DefaultLayout";
 import { getUserTasks } from "@/server/actions/taskActions";
@@ -49,11 +49,10 @@ const Tasks = async () => {
                     return (
                       <div
                         key={task._id}
-                        className={`${
-                          task.taskLevel === 100
-                            ? "bg-black bg-opacity-25"
-                            : "bg-white"
-                        } flex flex-col px-5 py-1 my-1 bg-opacity-50 backdrop-blur-lg w-[90%] md:w-[16rem] lg:w-[16rem] 3xl-[w-29rem] h-[17.5rem] rounded-3xl mx-5 text-black shadow-xl border-2 border-slate-50 cursor-pointer`}
+                        className={`${task.taskLevel === 100
+                          ? "bg-green-200 bg-opacity-25"
+                          : "bg-white"
+                          } flex flex-col px-5 py-1 my-1 bg-opacity-50 backdrop-blur-lg w-[90%] md:w-[16rem] lg:w-[16rem] 3xl-[w-29rem] h-[17.5rem] rounded-3xl mx-5 text-black shadow-xl border-2 border-slate-50 cursor-pointer`}
                       >
                         <Link href={`/home/${task._id}`}>
                           <div>
@@ -61,21 +60,18 @@ const Tasks = async () => {
                               <div className="flex flex-col gap-2">
                                 <p
                                   className={`text-xs w-[4.5rem] 
-                                  ${
-                                    task.priorityLevel === "Normal"
+                                  ${task.priorityLevel === "Normal"
                                       ? "bg-blue-300"
                                       : "bg-black"
-                                  }
-                                  ${
-                                    task.priorityLevel === "Important"
+                                    }
+                                  ${task.priorityLevel === "Important"
                                       ? "bg-orange-300"
                                       : "bg-black"
-                                  }
-                                  ${
-                                    task.priorityLevel === "High"
+                                    }
+                                  ${task.priorityLevel === "High"
                                       ? "bg-red-300"
                                       : "bg-black"
-                                  }
+                                    }
                                   py-0.5 rounded-xl text-center`}
                                 >
                                   {task.priorityLevel}
@@ -98,21 +94,30 @@ const Tasks = async () => {
                               </div>
                               <hr className="border-white pb-2" />
                               <div className="flex justify-between items-center py-1">
-                                <p className="font-semibold text-[13px]">
-                                  Status
-                                </p>
+                                <p className="font-semibold text-[13px]">Status</p>
                                 <p
                                   className={`bg-black bg-opacity-70 text-xs rounded-xl text-white py-1 px-3 text-center`}
                                 >
-                                  {task.taskStatus || "Not Started"}
+                                  {task.taskLevel === 100
+                                    ? "Completed"
+                                    : new Date(task.dueDate) < new Date()
+                                      ? "Incomplete"
+                                      : task.taskStatus || "Not Started"}
                                 </p>
                               </div>
+
                               <div className="flex justify-between py-2 text-[13px]">
                                 <p>Due on</p>
-                                <p className="text-semibold text-red-500">
+                                <p
+                                  className={`text-semibold ${new Date(task.dueDate) < new Date() && task.taskLevel < 100
+                                    ? "text-red-600 font-bold" // Highlight overdue tasks
+                                    : "text-gray-700"
+                                    }`}
+                                >
                                   {formattedDate}
                                 </p>
                               </div>
+
                             </div>
                           </div>
                         </Link>

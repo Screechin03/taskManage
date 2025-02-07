@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { auth } from "@/auth";
+import { auth } from "@/server";
 
 interface HeaderProps {
   user: {

@@ -5,7 +5,8 @@ import { User } from "../models/userModel";
 import { redirect } from "next/navigation";
 import { hash } from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
-import { signIn, signOut } from "@/auth";
+import { signIn, signOut } from "@/server";
+import { toast } from "react-toastify";
 
 //Login user
 
@@ -41,7 +42,7 @@ const registerUser = async (formData: FormData) => {
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    throw new Error("User already exists");
+    redirect('/login')
   }
 
   const hashedPassword = await hash(password, 10);

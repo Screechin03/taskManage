@@ -36,7 +36,7 @@ const DefaultLayout = ({ children, user }: Props) => {
     <div className="flex flex-row lg:flex-row h-screen overflow-hidden relative">
       <section
         className={` absolute left-0   top-0 z-[999]  lg:static  lg:translate-y-0
-      lg:flex flex-col items-center w-[50%]   h-screen lg:w-[18%] overflow-y-hidden overflow-x-hidden  duration-300 lg:inset-1 inset-0  ease-linear  bg-[#080C12] text-white 
+      lg:flex flex-col items-center w-[50%]   h-screen lg:w-[18%] overflow-y-hidden overflow-x-hidden  duration-300 lg:inset-1 inset-0  ease-linear  bg-black text-white 
            ${showMenu ? "translate-x-0" : "-translate-x-full"}     
         } lg:translate-x-0`}
         onClick={() => setShowMenu(false)}
@@ -53,7 +53,7 @@ const DefaultLayout = ({ children, user }: Props) => {
                       width={100}
                       height={100}
                       className="rounded-full"
-                      src={user?.image || "/images/default_avatar.jpeg"}
+                      src={user?.image || "/images/men.png"}
                       alt="User"
                     />
                   </span>
@@ -73,7 +73,7 @@ const DefaultLayout = ({ children, user }: Props) => {
               <hr className="border-white border-opacity-20" />
               <div className="flex flex-col gap-2  text-[#EBDFD7]">
                 <Link
-                  href="/task"
+                  href="/home/tasks"
                   className="w-full  flex flex-row gap-1 py-4  border-0 outline-none hover:bg-bodydark  duration-300 ease-in-out hover:bg-white hover:bg-opacity-20 lg:pb-5 pl-5  lg:pl-11"
                 >
                   <FaTasks className=" text-slate-50 ms-5 mt-1 " size={17} />
@@ -102,7 +102,7 @@ const DefaultLayout = ({ children, user }: Props) => {
         </div>
       </section>
 
-      <div className=" w-full flex  flex-col  bg-[#EBDFD7] overflow-y-auto sticky top-0 z-999 ">
+      <div className=" w-full flex  flex-col  bg-[#FBHGD0] overflow-y-auto sticky top-0 z-999 ">
         <section className="w-full bg-[#EBDFD7] flex flex-row gap-5 lg:h-[4.5rem] h-[6rem]  justify-end lg:justify-between items-center shadow-2  ">
           <HiOutlineMenuAlt1
             className="text-5xl ml-3 lg:hidden cursor-pointer"
@@ -110,7 +110,6 @@ const DefaultLayout = ({ children, user }: Props) => {
           />
           <div className=" w-[30rem] h-[4.5rem] flex items-center">
             <form className="w-full lg:pl-8 pl-0">
-              {/* <form> */}
               <div className="relative w-full flex items-center gap-4">
                 {user && user.name ? (
                   <p className="font-bold text-xl">

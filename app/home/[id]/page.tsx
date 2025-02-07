@@ -1,3 +1,4 @@
+
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import {
   deleteUserTask,
@@ -6,7 +7,7 @@ import {
 } from "@/server/actions/taskActions";
 import Link from "next/link";
 import DefaultLayout from "../layout/DefaultLayout";
-import { auth } from "@/auth";
+import { auth } from "@/server";
 
 const UpdateTask = async ({ params }: { params: any }) => {
   const { id } = params;
@@ -27,7 +28,7 @@ const UpdateTask = async ({ params }: { params: any }) => {
   return (
     <>
       <DefaultLayout user={userData}>
-        <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+        <div className="fixed inset-0 bg-neutral-400 bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
           <div className="lg:w-[30%] w-[90%]">
             <div className="flex flex-col justify-center items-center border-slate-100 border-2 rounded-3xl shadow-lg py-6 bg-white bg-opacity-50 text-black relative">
               <form
@@ -47,7 +48,7 @@ const UpdateTask = async ({ params }: { params: any }) => {
                     <input
                       id="name"
                       name="title"
-                      className="w-full py-2.5 outline-none text-sm bg-transparent bg-white text-black border-2 rounded-sm px-2 mt-2 focus:border-black placeholder:text-gray-600"
+                      className="w-full py-2.5 outline-none text-sm bg-transparent bg-white text-black border-2 rounded-xl px-2 mt-2 focus:border-black placeholder:text-gray-600"
                       placeholder={task.title}
                     />
                   </span>
@@ -58,7 +59,7 @@ const UpdateTask = async ({ params }: { params: any }) => {
                     <textarea
                       id="name"
                       name="description"
-                      className="w-full h-20 outline-none resize-none text-sm bg-transparent bg-white py-1 text-black border-2 rounded-sm px-2 mt-2 focus:border-black placeholder:text-gray-600"
+                      className="w-full h-20 outline-none resize-none text-sm bg-transparent bg-white py-1 text-black border-2 rounded-xl px-2 mt-2 focus:border-black placeholder:text-gray-600"
                       placeholder={task.description}
                     />
                   </span>
@@ -68,7 +69,9 @@ const UpdateTask = async ({ params }: { params: any }) => {
                       <select
                         title="status"
                         name="taskStatus"
-                        className="py-2.5 outline-none text-sm bg-white text-black px-2 mt-2 border-2 cursor-pointer rounded-sm focus:border-black"
+                        className="py-2.5 outline-none text-sm bg-white text-black px-2 mt-2 border-2 cursor-pointer rounded-xl focus:border-black"
+                        defaultValue={task.taskStatus}
+
                       >
                         <option>Not Started</option>
                         <option>In Process</option>
@@ -80,7 +83,8 @@ const UpdateTask = async ({ params }: { params: any }) => {
                       <select
                         title="level"
                         name="taskLevel"
-                        className="py-2.5 outline-none text-sm bg-white text-black px-2 mt-2 border-2 cursor-pointer rounded-sm focus:border-black"
+                        className="py-2.5 outline-none text-sm bg-white text-black px-2 mt-2 border-2 cursor-pointer rounded-xl focus:border-black"
+                        defaultValue={task.Progress}
                       >
                         <option value="0">0%</option>
                         <option value="25">25%</option>
@@ -96,7 +100,8 @@ const UpdateTask = async ({ params }: { params: any }) => {
                       <select
                         title="Priority"
                         name="priorityLevel"
-                        className="py-2.5 outline-none text-sm bg-white text-black px-2 mt-2 border-2 cursor-pointer rounded-sm focus:border-black"
+                        className="py-2.5 outline-none text-sm bg-white text-black px-2 mt-2 border-2 cursor-pointer rounded-xl focus:border-black"
+                        defaultValue={task.priorityLevel}
                       >
                         <option className="text-green-600">Normal</option>
                         <option className="text-orange-600">High</option>
@@ -110,8 +115,8 @@ const UpdateTask = async ({ params }: { params: any }) => {
                         title="duedate"
                         name="dueDate"
                         min={currentDate}
-                        className="w-full py-2 outline-none text-sm bg-white uppercase text-black px-2 mt-2 border-2 rounded-sm focus:border-black"
-                        placeholder={task.dueDate}
+                        className="w-full py-2 outline-none text-sm bg-white uppercase text-black px-2 mt-2 border-2 rounded-xl focus:border-black"
+                        defaultValue={task.dueDate}
                       />
                     </div>
                   </div>
@@ -126,14 +131,15 @@ const UpdateTask = async ({ params }: { params: any }) => {
                 </div>
               </form>
               <form action={deleteUserTask}>
-                <input type="hidden" value={task.id} />
+                <input type="hidden" name="id" value={id} />
                 <button
+                  type="submit"
                   className="lg:w-[8rem] lg:mt-1 lg:mb-2 h-10 text-md font-bold px-4 rounded-3xl border-2 bg-black text-white hover:bg-neutral-700"
-                  type="button"
                 >
                   Delete
                 </button>
               </form>
+
             </div>
           </div>
         </div>
